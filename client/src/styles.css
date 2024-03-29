@@ -53,6 +53,10 @@
   background-color: #562b81;
   padding: 0.5rem 1rem;
   border-radius: 5px;
+  width: fit-content;
+  height: fit-content;
+  margin-right: 4.3rem;
+  margin-top: 1rem;
 }
 
 .delete-entry-button {
@@ -84,4 +88,8 @@
   width: 120px;
   border: none;
   font-size: 1.3rem;
+}
+
+.row-btns {
+  padding: 0.5rem;
 }

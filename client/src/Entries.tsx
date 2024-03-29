@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { Entry } from './Data/data';
 
 type Prop = {
@@ -7,12 +8,22 @@ type Prop = {
 export function Entries({ entries }: Prop) {
   const entryComponents = entries.map((entry) => {
     return (
-      <div key={entry.entryId}>
+      <li key={entry.entryId}>
         <SingleEntry entry={entry} />
-      </div>
+      </li>
     );
   });
-  return <>{entryComponents}</>;
+  return (
+    <>
+      <div className="row row-entries">
+        <h2 className="column-half">Entries</h2>
+        <Link to="/form" className="form-link column-half">
+          New
+        </Link>
+      </div>
+      <ul className="entry-ul">{entryComponents}</ul>
+    </>
+  );
 }
 
 type EntryProp = {

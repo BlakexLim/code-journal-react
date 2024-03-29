@@ -11,19 +11,11 @@ import { NoPage } from './NoPage';
 import { type Entry, readEntries } from './Data/data';
 
 function App() {
-  const [entries, setEntries] = useState<Entry[]>([
-    {
-      entryId: 1,
-      title: 'Hello',
-      notes: 'test',
-      photoUrl:
-        'https://upload.wikimedia.org/wikipedia/en/a/a6/Pok%C3%A9mon_Pikachu_art.png',
-    },
-  ]);
+  const [entries, setEntries] = useState<Entry[]>([]);
 
-  // useEffect(() => {
-  //   setEntries(readEntries());
-  // }, [setEntries]);
+  useEffect(() => {
+    setEntries(readEntries());
+  }, [setEntries]);
 
   return (
     <>
