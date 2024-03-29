@@ -47,7 +47,7 @@ export function Form() {
     <>
       <div>
         <form onSubmit={handleSubmitNewEntry}>
-          <h2>New Entry</h2>
+          <h2>{updatingEntry ? 'Edit Entry' : 'New Entry'}</h2>
           <div className="row">
             <div className="column-half">
               <img
