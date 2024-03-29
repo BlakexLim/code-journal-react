@@ -1,11 +1,9 @@
 import { Link } from 'react-router-dom';
-import { Entry } from './Data/data';
+import { Entry, readEntries } from './Data/data';
+import { FaPencil } from 'react-icons/fa6';
 
-type Prop = {
-  entries: Entry[];
-};
-
-export function Entries({ entries }: Prop) {
+export function Entries() {
+  const entries = readEntries();
   const entryComponents = entries.map((entry) => {
     return (
       <li key={entry.entryId}>
@@ -38,7 +36,14 @@ function SingleEntry({ entry }: EntryProp) {
           <img className="width-100" src={entry.photoUrl} alt={entry.title} />
         </div>
         <div className="column-half">
-          <h2>{entry.title}</h2>
+          <div className="row">
+            <div className="column-full d-flex justify-between">
+              <h2>{entry.title}</h2>
+              <Link to={`form-edit/${entry.entryId}`}>
+                <FaPencil />
+              </Link>
+            </div>
+          </div>
           <p>{entry.notes}</p>
         </div>
       </div>

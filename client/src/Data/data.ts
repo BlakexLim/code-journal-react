@@ -48,6 +48,10 @@ export function addEntry(entry: UnsavedEntry): Entry {
   return newEntry;
 }
 
+export function readEntry(entryId: number): Entry | undefined {
+  return readData().entries.find((e) => e.entryId === entryId);
+}
+
 export function updateEntry(entry: Entry): Entry {
   const data = readData();
   const newEntries = data.entries.map((e) =>

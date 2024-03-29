@@ -1,22 +1,39 @@
 import React, { useState } from 'react';
-import { addEntry, type UnsavedEntry } from './Data/data';
-import { useNavigate } from 'react-router-dom';
+import {
+  addEntry,
+  readEntry,
+  type UnsavedEntry,
+  updateEntry,
+  type Entry,
+} from './Data/data';
+import { useNavigate, useParams } from 'react-router-dom';
 
 export function Form() {
-  const [titleInput, setTitleInput] = useState('');
-  const [imgUrlInput, setImgUrlInput] = useState('');
-  const [notesInput, setNotesInput] = useState('');
+  const { entryId } = useParams();
+  const updatingEntry = entryId ? readEntry(Number(entryId)) : undefined;
+  const [titleInput, setTitleInput] = useState(updatingEntry?.title ?? '');
+  const [imgUrlInput, setImgUrlInput] = useState(updatingEntry?.photoUrl ?? '');
+  const [notesInput, setNotesInput] = useState(updatingEntry?.notes ?? '');
   const navigate = useNavigate();
 
   function handleSubmitNewEntry(e: React.FormEvent<HTMLFormElement>) {
-    console.log('running');
     e.preventDefault();
-    const entry: UnsavedEntry = {
-      title: titleInput,
-      notes: notesInput,
-      photoUrl: imgUrlInput,
-    };
-    addEntry(entry);
+    if (updateEntry) {
+      const entry: Entry = {
+        title: titleInput,
+        notes: notesInput,
+        photoUrl: imgUrlInput,
+        entryId: Number(entryId),
+      };
+      updateEntry(entry);
+    } else {
+      const entry: UnsavedEntry = {
+        title: titleInput,
+        notes: notesInput,
+        photoUrl: imgUrlInput,
+      };
+      addEntry(entry);
+    }
     setTitleInput('');
     setImgUrlInput('');
     setNotesInput('');
