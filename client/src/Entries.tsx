@@ -35,7 +35,7 @@ function SingleEntry({ entry }: EntryProp) {
     <>
       <div className="row">
         <div className="column-half">
-          <img src={entry.photoUrl} alt={entry.title} />
+          <img className="width-100" src={entry.photoUrl} alt={entry.title} />
         </div>
         <div className="column-half">
           <h2>{entry.title}</h2>

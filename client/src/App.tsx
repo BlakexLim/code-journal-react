@@ -12,10 +12,10 @@ import { type Entry, readEntries } from './Data/data';
 
 function App() {
   const [entries, setEntries] = useState<Entry[]>([]);
-
+  const entriesArray = readEntries();
   useEffect(() => {
-    setEntries(readEntries());
-  }, [setEntries]);
+    setEntries(entriesArray);
+  }, [entriesArray]);
 
   return (
     <>
