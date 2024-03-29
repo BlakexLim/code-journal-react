@@ -1,33 +1,39 @@
-import { useState } from 'react';
-import reactLogo from './assets/react.svg';
-import viteLogo from '/vite.svg';
+import { useEffect, useState } from 'react';
+import { Route, Routes } from 'react-router-dom';
+import './layout.css';
+import './reset.css';
+import './styles.css';
 import './App.css';
+import { Header } from './Header';
+import { Entries } from './Entries';
+import { Form } from './Form';
+import { NoPage } from './NoPage';
+import { type Entry, readEntries } from './Data/data';
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [entries, setEntries] = useState<Entry[]>([
+    {
+      entryId: 1,
+      title: 'Hello',
+      notes: 'test',
+      photoUrl:
+        'https://upload.wikimedia.org/wikipedia/en/a/a6/Pok%C3%A9mon_Pikachu_art.png',
+    },
+  ]);
+
+  // useEffect(() => {
+  //   setEntries(readEntries());
+  // }, [setEntries]);
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <Routes>
+        <Route path="/" element={<Header />}>
+          <Route index element={<Entries entries={entries} />} />
+          <Route path="form" element={<Form />} />
+          <Route path="*" element={<NoPage />} />
+        </Route>
+      </Routes>
     </>
   );
 }

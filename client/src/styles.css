@@ -2,6 +2,15 @@
   background-color: #562b81;
 }
 
+.body {
+  width: 100vw;
+}
+
+.header h1 {
+  color: white;
+  padding-left: 1rem;
+}
+
 .form-image {
   width: 100%;
 }
@@ -33,6 +42,7 @@
 
 .entries-link {
   text-decoration: none;
+  align-self: center;
   outline: none;
   padding-left: 1rem;
 }
